@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="text-center">
     <form class="form-signin" @submit.prevent="signIn">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
@@ -44,12 +44,8 @@ export default {
 
 
 <style lang="scss" scoped>
-html,
-body {
+.text-center {
   height: 100%;
-}
-
-body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -58,7 +54,6 @@ body {
   padding-bottom: 40px;
   background-color: #f5f5f5;
 }
-
 .form-signin {
   width: 100%;
   max-width: 330px;

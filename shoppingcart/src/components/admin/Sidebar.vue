@@ -32,7 +32,7 @@
       </h6>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <router-link class="nav-link" to="/customer_order">
+          <router-link class="nav-link" to="/admin/customer_order">
             模擬訂單
           </router-link>
         </li>

@@ -50,25 +50,25 @@ export default new Router({
           name: "Orders",
           component: Orders,
           meta: { requiresAuth: true }
-        },
-      ],
+        }
+      ]
     },
     {
-      path: "/",
+      path: "/admin",
       name: "Dashboard",
       component: Dashboard,
       children: [
         {
           path: "customer_order",
           name: "CustomerOrder",
-          component: CustomerOrder,
+          component: CustomerOrder
         },
         {
           path: "customer_checkout/:orderId",
           name: "CustomerCheckout",
-          component: CustomerCheckout,
-        },
-      ],
-    },
-  ],
+          component: CustomerCheckout
+        }
+      ]
+    }
+  ]
 });
