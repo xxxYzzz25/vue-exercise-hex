@@ -14,7 +14,7 @@
   
   <body class="bg-lighter">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/">Vue.js 練習手冊</a>
+  <a class="navbar-brand" href="/">Vue.js</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -148,7 +148,10 @@
 
 
 <div id="app">
-  <input type="text">
+  {{message}}
+  <div v-text="message"></div>
+  <div v-html="message"></div>
+  <input type="text" v-model="message">
 </div>
 
 <script>
@@ -156,9 +159,9 @@ var app = new Vue({
   el: '#app',
   // 在此建立資料內容
 
-  // data: {
-  //   message: '哈囉'
-  // }
+  data: {
+    message: '<h2>哈囉</h2>'
+  }
 })
 </script> 
         </div>

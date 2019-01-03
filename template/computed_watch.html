@@ -14,7 +14,7 @@
   
   <body class="bg-lighter">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/">Vue.js 練習手冊</a>
+  <a class="navbar-brand" href="/">Vue.js</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -110,20 +110,21 @@
 
 <div id="app">
   <h4>Computed</h4>
-  <p>使用 Computed 來過濾資料。</p>
   <input type="text" class="form-control" v-model="filterText">
   <ul>
-    <li v-for="(item, key) in arrayData" :key="item.age">
+    <li v-for="(item, key) in filterArray" :key="item.age">
       {{ key }} - {{ item.name }} {{ item.age }} 歲 <input type="text">
     </li>
-  </ul> 
+  </ul>
+
   <p>使用 Computed 來呈現時間格式。</p>
-  <p></p>
+  <p>{{ formatTime }}</p>
+
   <h4>Watch</h4>
-  <p>使用 trigger 來觸發旋轉 box、並在三秒後改變回來</p>
+  <p>使用 trigger 來觸發三秒後旋轉 box、並在三秒後改變回來</p>
   <div class="box" :class="{'rotate': trigger }"></div>
   <hr>
-  <button class="btn btn-outline-primary">Counter</button>
+  <button class="btn btn-outline-primary" @click="openTrigger">Counter</button>
 </div>
 
 <script>
@@ -150,45 +151,45 @@ var app = new Vue({
   },
 
   // 解答
-  // methods: {
-  //   openTrigger: function() {
-  //     var vm = this;
-  //     vm.trigger = true
-  //   },
-  //   closeTrigger: function() {
-  //     var vm = this;
-  //     setTimeout(function() { 
-  //       vm.trigger = false
-  //     }, 3000);
-  //   }
-  // },
-  // watch: {
-  //   trigger: function() {
-  //     this.closeTrigger();
-  //   }
-  // },
-  // computed: {
-  //   filterArray: function () {
-  //     var vm = this;
-  //     return vm.arrayData.filter(function(item) {
-  //       return item.name.match(vm.filterText);
-  //     });
-  //   },
-  //   formatTime: function () {
-  //     console.log(this.newDate)
-  //     var dates = new Date(this.newDate * 1000);
-  //     var year = dates.getFullYear();
-  //     var month = dates.getMonth() + 1;
-  //     var date = dates.getDate() + 1;
-  //     var hours = dates.getHours();
-  //     var minutes = dates.getMinutes();
-  //     var seconds = dates.getSeconds();
-  //     return `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`
-  //   }
-  // },
-  // mounted: function () {
-  //   this.newDate = Math.floor(Date.now() / 1000);
-  // }
+  methods: {
+    openTrigger: function() {
+      var vm = this;
+      vm.trigger = true
+    },
+    closeTrigger: function() {
+      var vm = this;
+      setTimeout(function() { 
+        vm.trigger = false
+      }, 3000);
+    }
+  },
+  watch: {
+    trigger: function() {
+      this.closeTrigger();
+    }
+  },
+  computed: {
+    filterArray: function () {
+      var vm = this;
+      return vm.arrayData.filter(function(item) {
+        return item.name.match(vm.filterText);
+      });
+    },
+    formatTime: function () {
+      console.log(this.newDate)
+      var dates = new Date(this.newDate * 1000);
+      var year = dates.getFullYear();
+      var month = dates.getMonth() + 1;
+      var date = dates.getDate() + 1;
+      var hours = dates.getHours();
+      var minutes = dates.getMinutes();
+      var seconds = dates.getSeconds();
+      return `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`
+    }
+  },
+  mounted: function () {
+    this.newDate = Math.floor(Date.now() / 1000);
+  },
 });
 </script>
 

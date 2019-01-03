@@ -14,7 +14,7 @@
   
   <body class="bg-lighter">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/">Vue.js 練習手冊</a>
+  <a class="navbar-brand" href="/">Vue.js</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -110,45 +110,47 @@
 
 <div id="app">
   <h4>物件寫法</h4>
-  <div class="box"></div>
-  <p>請為此元素加上動態 className</p>
+  <div class="box" :class="{ 'rotate': isTransform, 'bg-danger':  boxColor }"></div>
   <hr>
-  <button class="btn btn-outline-primary" v-on:click="isTransform = !isTransform">選轉物件</button>
+
+  <button class="btn btn-outline-primary" v-on:click="isTransform = !isTransform">旋轉物件</button>
   <div class="form-check">
     <input type="checkbox" class="form-check-input" id="classToggle1" v-model="boxColor">
     <label class="form-check-label" for="classToggle1">切換色彩</label>
   </div>
   <hr>
+
   <h5>物件寫法 2</h5>
-  <div class="box"></div>
-  <p>請將此範例改為 "物件" 寫法</p>
+  <div class="box" :class="objectClass"></div>
   <hr>
-  <button class="btn btn-outline-primary">選轉物件</button>
+
+  <button class="btn btn-outline-primary" v-on:click="objectClass.rotate = !objectClass.rotate">旋轉物件</button>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="classToggle2">
+    <input type="checkbox" class="form-check-input" id="classToggle2" v-model="objectClass['bg-danger']">
     <label class="form-check-label" for="classToggle2">切換色彩</label>
   </div>
   <hr>
+
   <h4>陣列寫法</h4>
-  <button class="btn">請操作本元件</button>
-  <p>請用陣列呈現此元件 className</p>
+  <button class="btn" :class="arrayClass">請操作本元件</button>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="classToggle3">
+    <input type="checkbox" class="form-check-input" id="classToggle3" v-model="arrayClass" value="btn-outline-primary">
     <label class="form-check-label" for="classToggle3">切換樣式</label>
   </div>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="classToggle4">
+    <input type="checkbox" class="form-check-input" id="classToggle4" v-model="arrayClass" value="active">
     <label class="form-check-label" for="classToggle4">啟用元素狀態</label>
   </div>
   <hr>
+
   <h4>綁定行內樣式</h4>
-  <p>請用不同方式綁定以下行內樣式</p>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
+  <div class="box" :style="{backgroundColor: styleObject.backgroundColor}"></div>
+  <div class="box" :style="styleObject"></div>
+  <div class="box" :style="[styleObject, styleObject2]"></div>
   <hr>
+
   <h5>自動加上 Prefix (每個版本結果不同)</h5>
-  <div class="box"></div>
+  <div class="box" :style="[styleObject, styleObject3]"></div>
 </div>
 
 <script>

@@ -14,7 +14,7 @@
   
   <body class="bg-lighter">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/">Vue.js 練習手冊</a>
+  <a class="navbar-brand" href="/">Vue.js</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -147,19 +147,27 @@
 </div>
 
 
-<div>
-
+<div id="app">
+  {{text}}
+</div>
+<div id="app2">
+  {{text}}
 </div>
 
 
 <script>
-// var data = {
-//   text: '這是一段話'
-// }
-
-// var app = new Vue({
-//   data: data
-// })
+var app = new Vue({
+  el: '#app',
+  data: {
+    text: "這是一段話"
+  }
+});
+var app2 = new Vue({
+  el: '#app2',
+  data: {
+    text: "這是一段話2"
+  }
+});
 </script> 
         </div>
       </div>
