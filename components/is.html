@@ -123,6 +123,19 @@
 <div id="app">
   <h2>使用 is 顯示單一組件</h2>
   <primary-component :data="item"></primary-component>
+  <div is="primary-component" :data="item"></div>
+
+
+  <h2 class="mt-3">使用 is 動態切換組件</h2>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" :class="{'active': current == 'primary-component'}" href="#" @click.prevent="current = 'primary-component'">藍綠色元件</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" :class="{'active': current == 'danger-component'}" href="#" @click.prevent="current = 'danger-component'">紅色元件</a>
+    </li>
+  </ul>
+  <div class="mt-3" :is="current" :data="item"></div>
 
   <h2 class="mt-3">使用 is 動態切換組件</h2>
   <ul class="nav nav-pills">

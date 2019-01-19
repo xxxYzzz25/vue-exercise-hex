@@ -122,11 +122,14 @@
 
 <div id="app">
   <h2>沒有插槽可替換的狀態</h2>
-  <no-slot-component></no-slot-component>
+  <no-slot-component>
+    <p>這段訊息會消失。</p>
+  </no-slot-component>
 
   <h2>Slot 基礎範例</h2>
+  <single-slot-component></single-slot-component>
   <single-slot-component>
-    <p>使用這段取代原本的 Slot。</p>
+    <p>這段會取代原本的 Slot。</p>
   </single-slot-component>
 
   <h2>具名插槽</h2>
@@ -134,49 +137,49 @@
   </named-slot-component>
 
   <named-slot-component>
-    <header>替換的 Header</header>
-    <template>替換的 Footer</template>
-    <template>按鈕內容</template>
-    <p>其餘的內容</p>
+    <header slot="header">替換的 Header</header>
+    <template slot="footer">替換的 Footer</template>
+    <template slot="btnString">按鈕內容</template>
+    <p slot="content">其餘的內容</p>
   </named-slot-component>
 </div>
-
+  
 <script type="text/x-template" id="noSlotComponent">
-<div class="alert alert-warning">
-  <h6>我是一個元件</h6>
-  <p>
-    這沒有插槽。
-  </p>
-</div>
+  <div class="alert alert-warning">
+    <h6>我是一個元件</h6>
+    <p>
+      這沒有插槽。
+    </p>
+  </div>
 </script>
 
 <script type="text/x-template" id="singleSlotComponent">
-<div class="alert alert-warning">
-  <h6>我是一個元件</h6>
-  <div>
-    如果沒有內容，則會顯示此段落。
+  <div class="alert alert-warning">
+    <h6>我是一個元件</h6>
+    <slot>
+      如果沒有內容，則會顯示此段落。
+    </slot>
   </div>
-</div>
 </script>
 
 <script type="text/x-template" id="namedSlotComponent">
-<div class="card my-3">
-  <div class="card-header">
-    <div>這段是預設的文字</div>
+  <div class="card my-3">
+    <div class="card-header">
+      <slot name="header">這段是預設的文字</slot>
+    </div>
+    <div class="card-body">
+      <slot name="content">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      </slot>
+      <a href="#" class="btn btn-primary">
+        <slot name="btnString">spanGo somewhere</slot>
+      </a>
+    </div>
+    <div class="card-footer">
+      <slot name="footer">這是預設的 Footer</slot>
+    </div>
   </div>
-  <div class="card-body">
-    <slot>
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    </slot>
-    <a href="#" class="btn btn-primary">
-      <div>spanGo somewhere</div>
-    </a>
-  </div>
-  <div class="card-footer">
-    <div>這是預設的 Footer</div>
-  </div>
-</div>
 </script>
 
 <script>

@@ -119,16 +119,18 @@
     <thead>
       <tr>
         <th>品名</th>
-        <th class="click">價格 
-          <!-- isReverse 為反轉 className -->
-          <span class="icon isReverse">
-            <i class=" fas fa-angle-up text-success"></i>
+        <th class="click" @click="sortTd='price',isRotate=!isRotate">價格
+          <span class="icon" :class={'inverse':isRotate} v-if="sortTd==='price'">
+              <i class=" fas fa-angle-up text-success"></i>
           </span>
         </th>
-        <th class="click">到期日 
+        <th class="click" @click="sortTd='expiryDate',isRotate=!isRotate">到期日
+          <span class="icon" :class={'inverse':isRotate} v-if="sortTd==='expiryDate'">
+              <i class=" fas fa-angle-up text-success"></i>
+          </span>
         </th>
       </tr>
-      <tr v-for="item in data">
+      <tr v-for="item in sortArray" :key="item.price">
         <td>{{ item.name }}</td>
         <td>{{ item.price }}</td>
         <td>{{ item.expiryDate }}</td>
@@ -153,7 +155,9 @@
 var app = new Vue({
   el: '#app',
   data: {
-    data: [
+    isRotate: false,
+    sortTd: '',
+    arrayData:[
       {
         name: '巧呼呼蘇打水',
         price: 30,
@@ -182,7 +186,14 @@ var app = new Vue({
     ],
   },
   // 請在此撰寫 JavaScript
-  computed: {}
+  computed: {
+    sortArray() {
+      let vm = this
+      return vm.arrayData.sort((a, b) => {
+        return vm.isRotate ? (a[vm.sortTd] - b[vm.sortTd]) : (b[vm.sortTd] - a[vm.sortTd])
+      })
+    }
+  }
 });
 </script>
 
@@ -190,16 +201,11 @@ var app = new Vue({
 .table th.click {
   cursor: pointer;
 }
-
-.table th.click {
-  cursor: pointer;
-}
-
 .icon {
   display: inline-block;
 }
 .icon.inverse {
-  transform: rotate(180deg)
+  transform: rotate(180deg);
 }
 </style>
 
