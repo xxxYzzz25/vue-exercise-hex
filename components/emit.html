@@ -123,9 +123,9 @@
 <div id="app">
   <h2>透過 emit 向外傳遞資訊</h2>
   我透過元件儲值了 {{ cash }} 元
-  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <button-counter @increment="incrementTotal"></button-counter>
   <hr>
-  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <button-counter @increment="incrementTotal"></button-counter>
 </div> 
 
 <script>
